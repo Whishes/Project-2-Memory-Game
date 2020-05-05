@@ -1,0 +1,38 @@
+/* Max-width for screens larger than an iPad */
+@media (max-width: 600px) {
+    .deck .card {
+        height: 105px;
+        width: 105px;
+    }
+
+    #deck {
+        padding: 32px;
+        min-height: inherit;
+    }
+}
+
+/* Max-width for screens larger than an Nexus but smaller than iPad */
+@media (max-width: 487px) {
+    .deck .card {
+        height: 65px;
+        width: 65px;
+    }
+
+    #deck {
+        padding: 28px;
+        min-height: inherit;
+    }
+}
+
+/* Max-width for phone screens */
+@media (max-width: 320px) {
+    .deck .card {
+        height: 50px;
+        width: 50px;
+    }
+
+    #deck {
+        padding: 24px;
+        min-height: inherit;
+    }
+}
