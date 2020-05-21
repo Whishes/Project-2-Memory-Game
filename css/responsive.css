@@ -1,38 +1,47 @@
-/* Max-width for screens larger than an iPad */
-@media (max-width: 600px) {
-    .deck .card {
-        height: 105px;
-        width: 105px;
+  @media (min-width: 320px) {
+    /* Enables scrolling on phones for some reason */
+    body {
+      overflow: visible;
     }
 
-    #deck {
-        padding: 32px;
-        min-height: inherit;
+    .score-panel {
+      width: 93%;
     }
-}
+  
+      .deck {
+          width: 93%;
+      }
+  
+      .deck .card {
+          height: 70px;
+          width: 70px;
+      margin: 4px;
+      }
+  }
+  
 
-/* Max-width for screens larger than an Nexus but smaller than iPad */
-@media (max-width: 487px) {
-    .deck .card {
-        height: 65px;
-        width: 65px;
+  /* For tablets and larger screens */
+  @media (min-width: 768px) {
+      .container {
+          font-size: 18px;
+      }
+  
+    .score-panel {
+      width: 550px;
     }
-
-    #deck {
-        padding: 28px;
-        min-height: inherit;
-    }
-}
-
-/* Max-width for phone screens */
-@media (max-width: 320px) {
-    .deck .card {
-        height: 50px;
-        width: 50px;
-    }
-
-    #deck {
-        padding: 24px;
-        min-height: inherit;
-    }
-}
+  
+      .deck {
+          width: 550px;
+          height: 530px;
+      }
+  
+      .deck .card {
+          height: 110px;
+          width: 110px;
+      }
+  
+      .modal-content {
+          width: 45%;
+      }
+  }
+  

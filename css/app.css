@@ -1,109 +1,212 @@
 html {
-    box-sizing: border-box;
-}
-
-*,
-*::before,
-*::after {
-    box-sizing: inherit;
-}
-
-html,
-body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
-    font-family: 'Coda', cursive;
-}
-
-.container {
+      box-sizing: border-box;
+  }
+  
+  *,
+  *::before,
+  *::after {
+      box-sizing: inherit;
+  }
+  
+  html,
+  body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+  }
+  
+  body {
+      font-family: 'Coda', sans-serif;
+      font-size: 16px;
+  }
+  
+  .container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-}
+  }
 
-h1 {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
-}
-
-/*
- * Styles for the deck of cards
- */
-
-.deck {
-    width: 660px;
-    min-height: 680px;
-    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
-    padding: 32px;
-    border-radius: 10px;
-    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+  
+  /* Stylings for the whole deck of cards */
+  .deck {
+    background: #a6a2a2;
+    padding: 0.6rem;
+    border-radius: 4px;
+    box-shadow: 8px 9px 26px 0 rgba(46, 61, 73, 0.5);
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
-    margin: 0 0 3em;
-}
 
-.deck .card {
-    height: 125px;
-    width: 125px;
-    background: #2e3d49;
+    margin: 0 0 3em;
+  }
+  
+  .deck .card {
+    background: #d6d6d6;
     font-size: 0;
-    color: #ffffff;
-    border-radius: 8px;
+    color: #fff;
+    border-radius: 4px;
+    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
-}
-
-.deck .card.open {
-    transform: rotateY(0);
-    background: #02b3e4;
+  }
+  
+  .deck .card.open {
+    background: #2ed9f7;
     cursor: default;
-}
-
-.deck .card.show {
+    animation-name: flipInY;
+    animation-duration: 0.5s;
+  }
+  
+  .deck .card.show {
     font-size: 33px;
-}
-
-.deck .card.match {
+  }
+  
+  .show {
+    visibility: visible !important;
+    opacity: 100 !important;
+  }
+  
+  .deck .card.matching {
     cursor: default;
-    background: #02ccba;
+    background: #41f21d;
     font-size: 33px;
-}
-
-/*
- * Styles for the Score Panel
- */
-
-.score-panel {
+    backface-visibility: visible;
+    -webkit-backface-visibility: visible;
+  }
+  
+  .deck .card.not-matching {
+    background: #cf205d;
+  }
+  
+  .deck .card.disabled {
+    pointer-events: none;
+    opacity: 0.9;
+  }
+  
+  /* Score Panel Area */
+  .score-panel {
     text-align: left;
-    width: 345px;
-    margin-bottom: 10px;
-}
-
-.score-panel .stars {
-    margin: 0;
+    margin: 0.4em 0 0.4em;
+  }
+  
+  .stars {
     padding: 0;
     display: inline-block;
     margin: 0 5px 0 0;
-}
-
-.score-panel .stars li {
-    list-style: none;
-    display: inline-block;
-}
-
-.score-panel .restart {
-    float: right;
+  }
+  
+  .stars li {
+      list-style: none;
+      display: inline-block;
+  }
+  
+  .restart {
     cursor: pointer;
-}
+    float: right;
+  }
+  
+  .timer {
+    display: inline-block;
+    margin: 0 0.5em;
+  }
+  
+  /* Game Over Modal */
+  .modal {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.62);
+    transition: opacity 500ms;
+    /* Hides modal to show using code */
+    visibility: hidden;
+    opacity: 0;
+  }
+  
+  .modal-content {
+    margin: 70px auto;
+    padding: 20px;
+    background: #fff;
+    text-align: center;
+    border-radius: 5px;
+    width: 85%;
+    position: relative;
+  }
+  
+  .modal-content h2 {
+    margin-top: 0;
+    color: #333;
+  }
+  
+  .exitBtn {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+  }
+
+  .modal-content .modalMsg,
+  .infoMsg {
+    max-height: 30%;
+    overflow: auto;
+    text-align: center;
+  }
+  
+  .modalMsg {
+    margin-top: 0.9em;
+  }
+  
+  .star-rating li {
+    display: inline-block;
+    list-style: none;
+  }
+  
+  /* Affects button inside modal that resets game on click */
+  .replayBtn {
+    cursor: pointer;
+    background-color: #1db9f2;
+    border: none;
+    padding: 0.7rem 1rem;
+    font-size: 1.1rem;
+    display: block;
+    margin: 0 auto;
+    width: 40%;
+    color: #fff;
+    border-radius: 5px;
+  }
+  
+  /* Animations */
+  @keyframes flipInY {
+      from {
+          transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+          animation-timing-function: ease-in;
+          opacity: 0;
+      }
+  
+      40% {
+          transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+          animation-timing-function: ease-in;
+      }
+  
+      60% {
+          transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+          opacity: 1;
+      }
+  
+      80% {
+          transform: perspective(400px) rotate3d(0, 1, 0, -5deg);
+      }
+  
+      to {
+          transform: perspective(400px);
+      }
+  }

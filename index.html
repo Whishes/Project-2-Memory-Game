@@ -1,65 +1,110 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Matching Game</title>
-    <meta name="description" content="Memory Game">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-    <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="css/app.css">
-    <link rel="stylesheet" href="css/responsive.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="js/app.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Memory Game</title>
+  <meta name="description" content="">
+  <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+  <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
-
+  <main>
     <div class="container">
-        <header>
-            <h1>Matching Game</h1>
-        </header>
+      <h2>Memory Game</h2>
+      <section class="score-panel">
+          <ul class="stars">
+            <li><i class="fa fa-star"></i></li>
+            <li><i class="fa fa-star"></i></li>
+            <li><i class="fa fa-star"></i></li>
+          </ul>
 
-        <!-- Information above the boardgame -->
-        <section class="score-panel">
-        	<ul class="stars">
-        		<li><i class="fa fa-star"></i></li>
-        		<li><i class="fa fa-star"></i></li>
-        		<li><i class="fa fa-star"></i></li>
-        	</ul>
+          <span class="moves">0</span> Moves
 
-            <span class="moves"></span>
-            <span id="moves_text">Moves</span>
+          <span class="timer"></span>
 
-            <span id="time_text"></span>
+          <span class="restart">
+            <i class="fa fa-repeat"></i>
+          </span>
 
-            <span id="msg_text"></span>
+      </section>
 
-            <div class="restart_btn">
-        		<span><i class="fa fa-repeat"></i> Reset</span>
-            </div>
-        </section>
+      <ul class="deck">
+        <li class="card " type="diamond">
+          <i class="fa fa-diamond"></i>
+        </li>
+        <li class="card" type="plane">
+          <i class="fa fa-paper-plane"></i>
+        </li>
+        <li class="card" type="anchor">
+          <i class="fa fa-anchor"></i>
+        </li>
+        <li class="card" type="bolt">
+          <i class="fa fa-bolt"></i>
+        </li>
+        <li class="card" type="cube">
+          <i class="fa fa-cube"></i>
+        </li>
+        <li class="card" type="anchor">
+          <i class="fa fa-anchor"></i>
+        </li>
+        <li class="card" type="leaf">
+          <i class="fa fa-leaf"></i>
+        </li>
+        <li class="card" type="bicycle">
+          <i class="fa fa-bicycle"></i>
+        </li>
+        <li class="card" type="diamond">
+          <i class="fa fa-diamond"></i>
+        </li>
+        <li class="card" type="bomb">
+          <i class="fa fa-bomb"></i>
+        </li>
+        <li class="card" type="leaf">
+          <i class="fa fa-leaf"></i>
+        </li>
+        <li class="card" type="bomb">
+          <i class="fa fa-bomb"></i>
+        </li>
+        <li class="card" type="bolt">
+          <i class="fa fa-bolt"></i>
+        </li>
+        <li class="card" type="bicycle">
+          <i class="fa fa-bicycle"></i>
+        </li>
+        <li class="card" type="plane">
+          <i class="fa fa-paper-plane"></i>
+        </li>
+        <li class="card" type="cube">
+          <i class="fa fa-cube"></i>
+        </li>
+      </ul>
 
-        <!-- List Class for the Game deck -->
-        <ul id="deck" class="deck"></ul>
-    </div>
+      <div class="modal">
+        <div class="modal-content">
+          <h2>Congrats!</h2>
 
-    <!-- Results Screen after game completion -->
-    <div id="modal" class="modal">
-        <div class="modal_content">
-            <h3>Congratulations!</h3>
-            <h4>Game Results:</h4>
+          <a class="exitBtn" href="#">×</a>
 
-            <p>Time: <span id="time_results"></span></p>
-            <p>Moves: <span id="moves_results"></span></p>
+          <div class="modalMsg">
+            Your scores are:
+          </div>
+
+          <div class="infoMsg">
+            <p>Moves: <span class="fMoves"></span></p>
+            <p>Time Taken: <span class="tTime"></span></p>
+            <p>Rating: <span class="starRating"></span></p>
+          </div>
+
+          <button class="replayBtn">
+            Replay!
+          </button>
         </div>
-
-        <div class="footer">
-            <a href="#!" id="m_start_button">Replay</a>
-        </div>
+      </div>
     </div>
+  </main>
+  <script src="js/app.js"></script>
 </body>
 </html>
