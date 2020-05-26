@@ -1,3 +1,15 @@
+// Help Modal Stuff
+const helpButton = document.querySelector('.help');
+helpButton.addEventListener('click', openHelpModal);
+
+function openHelpModal() {
+  helpModal.classList.add('show');
+}
+
+function closeHelpModal() {
+  helpModal.classList.remove('show');
+}
+
 // Setting General Board/Deck variables
 let card = document.getElementsByClassName('card');
 let cards = [...card];
@@ -19,9 +31,14 @@ let interval;
 
 // Setting Modal variables
 let closeIcon = document.querySelector('.exitBtn');
-let modal = document.getElementsByClassName('modal')[0];
+// let gameModal = document.getElementById('endModal');  - Keeping just incase but commented out cause stops the endModal from actually showing...
 const modalPlayAgainButton = document.querySelector('.replayBtn');
 
+// Help Modal Stuff
+
+// 'Click' evnt listeners for buttons
+restartButton.addEventListener('click', startGame);
+modalPlayAgainButton.addEventListener('click', reset);
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -38,16 +55,9 @@ function shuffle(array) {
   return array;
   }
 
-// Starts the startGame function on page load (when html body information is read)
-document.onload = startGame();
-
-// 'Click' evnt listeners for replay buttons
-restartButton.addEventListener('click', startGame);
-modalPlayAgainButton.addEventListener('click', reset);
-
 function startGame() {
-  // Closes the end game Modal
-  modal.classList.remove('show');
+  // Closes the end game Modal  -   Has started bugging out the whole game for some reason
+  // endModal.classList.remove('show');
 
   // Calls the shuffle function
   cards = shuffle(cards);
@@ -69,7 +79,6 @@ function startGame() {
 
   // Resets star rating
   for (let i = 0; i < stars.length; i++) {
-    stars[i].style.color = "#ffd700";
     // Makes sure all stars are visible (reset) when other functions hide each one
     stars[i].style.display = "visible";
   }
@@ -94,7 +103,7 @@ function flashCards() {
       cards.forEach(i => deck.appendChild(i))
       cards[i].classList.remove('show', 'open', 'disabled')
     }
-  }, 2000);
+  }, 3000);
 }  
 
 // When function is called on click, assigns each state to the clicked card
@@ -147,16 +156,16 @@ function notMatching() {
   }, 1500);
 }
 
-// Disables all cards temporarily (while two cards are flipped) -                Pretty sure is what is buggy (make sure to fix)
+// Disables all cards temporarily (while two cards are flipped)
 function disable() {
-  Array.prototype.filter((cards, i, Array) => {
-     card.classList.add("disabled"); 
+  Array.prototype.filter.call(cards, function(card) {
+     card.classList.add('disabled'); 
   })
 }
 
-// Enables flipping of cards, disables matching cards -                Pretty sure is what is buggy (make sure to fix)
+// Enables flipping of cards, disables matching cards
 function enable() {
-  Array.prototype.filter((cards, i, Array) => {
+  Array.prototype.filter.call(cards, function(card) {
     card.classList.remove('disabled');
     for (let i = 0; i < matchingCard.length; i++) {
       matchingCard[i].classList.add('disabled');
@@ -174,14 +183,14 @@ function moveCounter() {
   if (moves > 8 && moves < 15) {
     for (i = 0; i < 3; i++) {
       if (i > 1) {
-        stars[i].style.display = "collapse";
+        stars[i].style.display = 'none';
       }
     }
   }
   else if (moves > 16) {
     for (i = 0; i < 3; i++) {
       if (i > 0) {
-        stars[i].style.display = "collapse";
+        stars[i].style.display = 'none';
       }
     }
   }
@@ -208,7 +217,7 @@ function modalOpen() {
     let fTime = timer.innerHTML;
 
     // Part that shows the actual modal
-    modal.classList.add("show");
+    endModal.classList.add('show');
 
     // Sets the final amount of stars in the starRating variable
     let starRating = document.querySelector('.stars').innerHTML;
@@ -220,18 +229,20 @@ function modalOpen() {
 
     // Adds event listener for modal's close button
     closeModal();
-  }
+  }  
 }
 
-// Closes modal upon clicking its close icon - Close modal also set in the startGame function (maybe move?)
+// Closes modal upon clicking its close icon - Close modal also set in the startGame function
 function closeModal() {
   closeIcon.addEventListener('click', function(e) {
+    endModal.classList.remove('show');
     startGame();
   });
 }
 
-// Called when user hits "play again" button - Close modal also set in the startGame function (maybe move?)
+// Called when user hits "play again" button - Close modal also set in the startGame function
 function reset() {
+  endModal.classList.remove('show');
   startGame();
 }
 
@@ -241,4 +252,11 @@ for (let i = 0; i < cards.length; i++) {
   card.addEventListener('click', displayCard);
   card.addEventListener('click', cardOpen);
   card.addEventListener('click', modalOpen);
+}
+
+// Starts the startGame function on page load (when html body information is read)
+window.onload = function() {
+  setTimeout(function() {
+    startGame()
+  }, 400);
 }

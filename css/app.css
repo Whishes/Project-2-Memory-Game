@@ -80,7 +80,7 @@ html {
   }
   
   .deck .card.not-matching {
-    background: #cf205d;
+    background: #ec184d;
   }
   
   .deck .card.disabled {
@@ -98,6 +98,7 @@ html {
     padding: 0;
     display: inline-block;
     margin: 0 5px 0 0;
+    color: yellow;
   }
   
   .stars li {
@@ -108,11 +109,19 @@ html {
   .restart {
     cursor: pointer;
     float: right;
+    color: rgba(46, 61, 73, 0.5);
   }
   
   .timer {
     display: inline-block;
     margin: 0 0.5em;
+  }
+
+  .help {
+    cursor: pointer;
+    margin-left: 1rem;
+    color: rgba(46, 61, 73, 0.5);
+    float: right;
   }
   
   /* Game Over Modal */
@@ -122,7 +131,7 @@ html {
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(0, 0, 0, 0.62);
+    background: rgba(36, 36, 36, 0.62);
     transition: opacity 500ms;
     /* Hides modal to show using code */
     visibility: hidden;
@@ -132,7 +141,7 @@ html {
   .modal-content {
     margin: 70px auto;
     padding: 20px;
-    background: #fff;
+    background: rgb(155, 154, 154);
     text-align: center;
     border-radius: 5px;
     width: 85%;
@@ -141,7 +150,7 @@ html {
   
   .modal-content h2 {
     margin-top: 0;
-    color: #333;
+    color: rgb(163, 163, 163);
   }
   
   .exitBtn {
@@ -165,7 +174,13 @@ html {
     margin-top: 0.9em;
   }
   
-  .star-rating li {
+  .modal-footer {
+    display: flex;
+    justify-content: center;
+    padding: 0 1em 1.5em;
+  }
+
+  .starRating li {
     display: inline-block;
     list-style: none;
   }
@@ -173,7 +188,6 @@ html {
   /* Affects button inside modal that resets game on click */
   .replayBtn {
     cursor: pointer;
-    background-color: #1db9f2;
     border: none;
     padding: 0.7rem 1rem;
     font-size: 1.1rem;
@@ -183,7 +197,19 @@ html {
     color: #fff;
     border-radius: 5px;
   }
+
+  /* Help Modal Stylings */
+  .close {
+    float: right;
+    position: relative;
+    cursor: pointer;
+    animation: animateCloseIcon 5s linear 2s infinite;
+  }
   
+  .help-tips li {
+    list-style: none;
+  }
+
   /* Animations */
   @keyframes flipInY {
       from {
@@ -210,3 +236,19 @@ html {
           transform: perspective(400px);
       }
   }
+
+  @keyframes animateCloseIcon {
+    0% { top: 0em; }
+
+    40% { top: 0em; }
+
+    43% { top: -0.2em; }
+
+    46% { top: 0em; }
+
+    48% { top: 0.2em; }
+
+    50% { top: 0em; }
+
+    100% { top: 0em; }
+}

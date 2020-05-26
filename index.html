@@ -14,6 +14,8 @@
   <main>
     <div class="container">
       <h2>Memory Game</h2>
+
+      <!-- Score Panel Information -->
       <section class="score-panel">
           <ul class="stars">
             <li><i class="fa fa-star"></i></li>
@@ -25,12 +27,16 @@
 
           <span class="timer"></span>
 
+          <span class="help">
+            <i class="fa fa-info"></i>
+          </span>
+
           <span class="restart">
             <i class="fa fa-repeat"></i>
           </span>
-
       </section>
 
+      <!-- Deck of Cards -->
       <ul class="deck">
         <li class="card " type="diamond">
           <i class="fa fa-diamond"></i>
@@ -82,11 +88,12 @@
         </li>
       </ul>
 
-      <div class="modal">
+      <!-- Game Over Modal -->
+      <div class="modal" id= "endModal">
         <div class="modal-content">
           <h2>Congrats!</h2>
 
-          <a class="exitBtn" href="#">×</a>
+          <a class="exitBtn" href=# >×</a>
 
           <div class="modalMsg">
             Your scores are:
@@ -97,12 +104,36 @@
             <p>Time Taken: <span class="tTime"></span></p>
             <p>Rating: <span class="starRating"></span></p>
           </div>
-
-          <button class="replayBtn">
+          <button class="replayBtn" onClick="reset()">
             Replay!
           </button>
         </div>
       </div>
+
+      <!-- Help Screen Modal -->
+     <div class= "modal" id= "helpModal">
+        <div class= "modal-content">
+          <span role="button" class="close" onClick="closeHelpModal()">&times;</span>
+          <div class= "modalMsg">
+            <div class= "help-tips">
+              <p>When the page loads the game starts.</p>
+              <p>All the 8 pairs of cards i.e 16 cards are flashed</p>
+              <p>How to play:</p>
+              <ul>
+                  <li>&bullet; Click on a black square to reveal the card</li>
+                  <li>&bullet; Click on a second black square to reveal the card
+                      <ul>
+                          <li>a. If the two cards match, the cards stay revealed.</li>
+                          <li>b. If there is no match, the cards are hidden and you can click another pair.</li>
+                      </ul>
+                  </li>
+                  <li>&bullet; You can click either of the restart buttons <em>↻</em> or <em>Restart ↻</em> at any point in time to start all over.</li>
+                  <li>&bullet; When you have correctly matched all 8 pairs of cards, the game ends and your total game time, total number of moves and rating will be displayed.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div> 
     </div>
   </main>
   <script src="js/app.js"></script>
