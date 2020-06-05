@@ -103,7 +103,7 @@ function flashCards() {
       cards.forEach(i => deck.appendChild(i))
       cards[i].classList.remove('show', 'open', 'disabled')
     }
-  }, 3000);
+  }, 4000);
 }  
 
 // When function is called on click, assigns each state to the clicked card
@@ -229,18 +229,18 @@ function modalOpen() {
 
     // Adds event listener for modal's close button
     closeModal();
-  }  
+  }
 }
 
 // Closes modal upon clicking its close icon - Close modal also set in the startGame function
 function closeModal() {
   closeIcon.addEventListener('click', function(e) {
-    endModal.classList.remove('show');
+    endModal.classList.remove('show'); // 
     startGame();
   });
 }
 
-// Called when user hits "play again" button - Close modal also set in the startGame function
+// Called when user hits "play again" button - Close modal also set in the startGame function - Could be all merged into the closeModal function but found was less confusing to make it different and go from there
 function reset() {
   endModal.classList.remove('show');
   startGame();
